@@ -7,8 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="QTC" />
-        <module name="GTC" />
         <module name="CTC" />
+        <module name="GTC" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
