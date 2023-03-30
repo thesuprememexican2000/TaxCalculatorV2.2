@@ -1,5 +1,7 @@
 package com.example.ctc.BLL.Model;
 
+
+
 public class TaxBracket {
     private float min;
     private float max;
