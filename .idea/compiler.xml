@@ -7,21 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="QTC" />
-        <module name="CTC" />
         <module name="GTC" />
+        <module name="CTC" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="CTC" target="17" />
-      <module name="GTC" target="17" />
-      <module name="QTC" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="CTC" options="-parameters" />
-      <module name="GTC" options="-parameters" />
-      <module name="QTC" options="-parameters" />
+      <module name="GTC" options="" />
+      <module name="QTC" options="" />
     </option>
   </component>
 </project>
