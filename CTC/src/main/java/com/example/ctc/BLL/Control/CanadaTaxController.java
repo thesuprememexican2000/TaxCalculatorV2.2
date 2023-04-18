@@ -23,7 +23,7 @@ public class CanadaTaxController {
         else if (amount > 151978 && amount <= 216511) {
             total = 49020 * .15;
             total = total + (98040 * .205);
-            total = total + (151978 * .26)
+            total = total + (151978 * .26);
             total = total + ((amount - 151978) * .29);
         }
         //plus de 216 511
@@ -31,9 +31,9 @@ public class CanadaTaxController {
             total = 49020 * .15;
             total = total + (98040 * .205);
             total = total + (151978 * .26);
-            total = total + (216511 * .29)
+            total = total + (216511 * .29);
             total = total + ((amount - 216511) * 32);
-        } else
-            return total;
+        }
+        return total;
     }
 }
