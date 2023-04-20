@@ -1,4 +1,4 @@
 package com.example.qtc.FEL;
 
-public class AppDriver {
+public class AppDriver_QTC {
 }
