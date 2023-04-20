@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AlwaysDataSQL_Driver {
+public class AlwaysDataSQL_Driver implements ISQLDriver{
 
     private Connection conn;
 
@@ -15,6 +15,7 @@ public class AlwaysDataSQL_Driver {
         this.conn = connect();
     }
 
+    @Override
     public Connection connect() {
         MysqlDataSource datasource = new com.mysql.jdbc.jdbc2.optional.MysqlDataSource();
         datasource.setUser("306943");
@@ -33,6 +34,7 @@ public class AlwaysDataSQL_Driver {
         return null;
     }
 
+    @Override
     public Connection getConnection() {
         return conn;
     }
