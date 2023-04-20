@@ -2,6 +2,8 @@ package com.example.qtc.BLL.Control;
 
 import com.example.qtc.BLL.Model.TaxBracket;
 import com.example.qtc.DAL.InMemory_DAO;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +17,22 @@ public class QuebecTaxController {
         TaxBrackets = dao.getTaxBrackets();
     }
 
-    double getTax(double amount) {
+     JsonObject getTax(double amount) {
+        String taxInfo;
+        JsonObject jsonObject;
+        double tax;
 
         for (TaxBracket taxBracket : TaxBrackets) {
             if (taxBracket.getMin() <= amount && amount < taxBracket.getMax()) {
-                return amount * taxBracket.getRate();
+                tax = amount * (taxBracket.getRate()/100);
+                taxInfo = String.format("{\"amount\":%.2f,\"rate\":%f}",tax,taxBracket.getRate());
+                jsonObject = new JsonParser().parse(taxInfo).getAsJsonObject();
+                return jsonObject;
             }
         }
-        return 0;
+         taxInfo = "{\"amount\":0,\"rate\":0}";
+         jsonObject = new JsonParser().parse(taxInfo).getAsJsonObject();
+         return jsonObject;
     }
 }
 

@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="QTC" />
         <module name="GTC" />
+        <module name="CTC" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
