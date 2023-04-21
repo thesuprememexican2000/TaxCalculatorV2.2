@@ -26,26 +26,23 @@ public class AlwaysDataSQL_DAO implements ITaxBracket{
     }
 
     @Override
-    public TaxBracket findBracketbyRate(float Rate) {
-        String query = String.format("SELECT * FROM QuebecTaxBracket" + "WHERE rate='%s'", Rate);
-        TaxBracket bracket = null;
-
+    public List<TaxBracket> findAllBrackets() {
+        List<TaxBracket> brackets = new ArrayList<>();
         try {
             Statement st = this.driver.getConnection().createStatement();
+            String query = "SELECT * FROM QuebecTaxBracket";
             ResultSet result = st.executeQuery(query);
 
-            while (result.next()) {
+            while(result.next()) {
                 float min = result.getFloat(1);
                 float max = result.getFloat(2);
                 float rate = result.getFloat(3);
-                bracket = new TaxBracket(min, max, rate);
+                brackets.add(new TaxBracket(min, max, rate));
             }
         } catch (SQLException ex) {
             Logger.getLogger(AlwaysDataSQL_DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return bracket;
+        return brackets;
     }
-
-
 
 }

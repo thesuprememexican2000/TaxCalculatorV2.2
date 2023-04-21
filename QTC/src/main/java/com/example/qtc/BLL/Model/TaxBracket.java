@@ -38,4 +38,13 @@ public class TaxBracket {
     public void setRate(float rate) {
         this.rate = rate;
     }
+
+    @Override
+    public String toString() {
+        return "TaxBracket{" +
+                "min=" + min +
+                ", max=" + max +
+                ", rate=" + rate +
+                '}';
+    }
 }

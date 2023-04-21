@@ -1,6 +1,7 @@
 package com.example.qtc.BLL.Control;
 
 import com.example.qtc.BLL.Model.TaxBracket;
+import com.example.qtc.DAL.AlwaysDataSQL_DAO;
 import com.example.qtc.DAL.InMemory_DAO;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -9,14 +10,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuebecTaxController {
-    InMemory_DAO dao;
+    InMemory_DAO inmemdao;
+    AlwaysDataSQL_DAO dao;
     List<TaxBracket> TaxBrackets;
 
     public QuebecTaxController() {
-        dao = new InMemory_DAO();
-        TaxBrackets = dao.getTaxBrackets();
+        inmemdao = new InMemory_DAO();
+        dao = AlwaysDataSQL_DAO.getInstance();
+        TaxBrackets = dao.findAllBrackets();
     }
 
+     public double getTax(double amount) {
+        double tax = 0;
+
+        for (TaxBracket bracket : TaxBrackets) {
+            if (amount > bracket.getMax()) {
+                tax += (bracket.getMax() - bracket.getMin()) * bracket.getRate();
+            } else {
+                tax += (amount- bracket.getMin()) * bracket.getRate();
+                break;
+            }
+        }
+        return tax;
+    }
+/*
      JsonObject getTax(double amount) {
         String taxInfo;
         JsonObject jsonObject;
@@ -33,9 +50,11 @@ public class QuebecTaxController {
          taxInfo = "{\"amount\":0,\"rate\":0}";
          jsonObject = new JsonParser().parse(taxInfo).getAsJsonObject();
          return jsonObject;
-    }
+    } */
 }
 
+
+//cringe version
 //    double getTax(double amount) {
 //        double total = 0;
 //        if (amount <= 46295 ){

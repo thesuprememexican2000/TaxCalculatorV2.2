@@ -2,6 +2,8 @@ package com.example.qtc.DAL;
 
 import com.example.qtc.BLL.Model.TaxBracket;
 
+import java.util.List;
+
 public interface ITaxBracket {
-    public TaxBracket findBracketbyRate(float Rate);
+    public List<TaxBracket> findAllBrackets();
 }
