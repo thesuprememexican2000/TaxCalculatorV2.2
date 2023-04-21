@@ -16,7 +16,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="CTC" options="-parameters" />
       <module name="GTC" options="" />
-      <module name="QTC" options="" />
+      <module name="QTC" options="-parameters" />
     </option>
   </component>
 </project>

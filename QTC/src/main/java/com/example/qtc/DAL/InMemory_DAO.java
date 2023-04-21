@@ -5,7 +5,7 @@ import com.example.qtc.BLL.Model.TaxBracket;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InMemory_DAO {
+public class InMemory_DAO implements ITaxBracket{
     List<TaxBracket> list;
 
     public InMemory_DAO() {
@@ -23,7 +23,7 @@ public class InMemory_DAO {
         bracket = new TaxBracket(112655,Float.MAX_VALUE,.2575f);
         list.add(bracket);
     }
-    public List<TaxBracket> getTaxBrackets() {
+    public List<TaxBracket> findAllBrackets() {
         return list;
     }
 }
