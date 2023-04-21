@@ -20,18 +20,24 @@ public class QuebecTaxController {
         TaxBrackets = dao.findAllBrackets();
     }
 
-     public double getTax(double amount) {
+     public JsonObject getTax(double amount) {
         double tax = 0;
+        String taxInfo;
+        JsonObject json = null;
 
         for (TaxBracket bracket : TaxBrackets) {
             if (amount > bracket.getMax()) {
                 tax += (bracket.getMax() - bracket.getMin()) * bracket.getRate();
+                taxInfo = String.format("{\"amount\":%.2f,\"rate\":%f}", tax, bracket.getRate());
+                json = new JsonParser().parse(taxInfo).getAsJsonObject();
             } else {
                 tax += (amount- bracket.getMin()) * bracket.getRate();
+                taxInfo = String.format("{\"amount\":%.2f,\"rate\":%f}", tax, bracket.getRate());
+                json = new JsonParser().parse(taxInfo).getAsJsonObject();
                 break;
             }
         }
-        return tax;
+        return json;
     }
 /*
      JsonObject getTax(double amount) {
