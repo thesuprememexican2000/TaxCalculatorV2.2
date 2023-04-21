@@ -1,4 +1,4 @@
 package com.example.gtc.FEL;
 
-public class AppDriver {
+public class AppDriver_GTC {
 }
