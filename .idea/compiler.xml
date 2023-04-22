@@ -7,15 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="QTC" />
-        <module name="GTC" />
         <module name="CTC" />
+        <module name="GTC" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="CTC" options="-parameters" />
-      <module name="GTC" options="" />
+      <module name="GTC" options="-parameters" />
       <module name="QTC" options="-parameters" />
     </option>
   </component>

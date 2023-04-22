@@ -1,13 +1,13 @@
-package com.example.ctc;
+package com.example.ctc.API;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CtcApplication {
+public class CanadaServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CtcApplication.class, args);
+        SpringApplication.run(CanadaServiceApplication.class, args);
     }
 
 }
