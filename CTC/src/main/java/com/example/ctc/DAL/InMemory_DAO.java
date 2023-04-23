@@ -26,7 +26,7 @@ public class InMemory_DAO {
         bracket = new TaxBracket(216511,Float.MAX_VALUE,.33f);
         list.add(bracket);
     }
-    public List<TaxBracket> getTaxBrackets() {
+    public List<TaxBracket> findAllBrackets() {
         return list;
     }
 }

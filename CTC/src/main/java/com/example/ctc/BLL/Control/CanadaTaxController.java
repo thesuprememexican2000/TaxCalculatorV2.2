@@ -2,20 +2,45 @@ package com.example.ctc.BLL.Control;
 
 import com.example.ctc.BLL.Model.TaxBracket;
 import com.example.ctc.DAL.InMemory_DAO;
+import com.example.ctc.DAL.MongoDB_DAO;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.util.List;
 
 public class CanadaTaxController {
-    InMemory_DAO dao;
+
+    MongoDB_DAO dao;
+    InMemory_DAO inmemdao;
     List<TaxBracket> TaxBrackets;
 
     public CanadaTaxController() {
-        dao = new InMemory_DAO();
-        TaxBrackets = dao.getTaxBrackets();
+        dao = new MongoDB_DAO();
+        inmemdao = new InMemory_DAO();
+        TaxBrackets = dao.findAllBrackets();
     }
 
+    public JsonObject getTax(double amount) {
+        double tax = 0;
+        String taxInfo;
+        JsonObject json = null;
+
+        for (TaxBracket bracket : TaxBrackets) {
+            if (amount > bracket.getMax()) {
+                tax += (bracket.getMax() - bracket.getMin()) * bracket.getRate();
+                taxInfo = String.format("{\"amount\":%.2f,\"rate\":%f}", tax, bracket.getRate());
+                json = new JsonParser().parse(taxInfo).getAsJsonObject();
+            } else {
+                tax += (amount- bracket.getMin()) * bracket.getRate();
+                taxInfo = String.format("{\"amount\":%.2f,\"rate\":%f}", tax, bracket.getRate());
+                json = new JsonParser().parse(taxInfo).getAsJsonObject();
+                break;
+            }
+        }
+        return json;
+    }
+
+    /*
     JsonObject getTax(double amount) {
         String taxInfo;
         JsonObject jsonObject;
@@ -32,7 +57,7 @@ public class CanadaTaxController {
         taxInfo = "{\"amount\":0,\"rate\":0}";
         jsonObject = new JsonParser().parse(taxInfo).getAsJsonObject();
         return jsonObject;
-    }
+    } */
 }
 //    double getTax(double amount) {
 //        double total = 0;
