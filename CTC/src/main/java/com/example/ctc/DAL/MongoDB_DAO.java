@@ -8,11 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MongoDB_DAO implements ITaxBracket{
-
+    private static MongoDB_DAO instance = null;
     IMongoDBConnector mongoDriver;
 
     public MongoDB_DAO() {
         this.mongoDriver = new Atlas_MongoDB_Connector();
+    }
+
+    public static MongoDB_DAO getInstance(){
+        if(instance==null)
+            instance = new MongoDB_DAO();
+        return instance;
     }
 
     @Override
