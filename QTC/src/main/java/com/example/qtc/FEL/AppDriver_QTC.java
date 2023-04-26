@@ -31,7 +31,6 @@ public class AppDriver_QTC {
 //        String taxAmount = tax.toString();
 //
 //        Logger.Logger(taxAmount);
-
     }
 
 }
