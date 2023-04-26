@@ -1,7 +1,6 @@
 package com.example.qtc.API;
 
 import com.example.qtc.BLL.Control.QuebecTaxController;
-import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -3,23 +3,34 @@ package com.example.qtc.BLL.Control;
 import com.example.qtc.BLL.Model.TaxBracket;
 import com.example.qtc.DAL.AlwaysDataSQL_DAO;
 import com.example.qtc.DAL.InMemory_DAO;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class QuebecTaxController {
-    //AlwaysDataSQL_DAO dao;
-    InMemory_DAO dao;
+    AlwaysDataSQL_DAO dao;
     List<TaxBracket> TaxBrackets;
 
     public QuebecTaxController() {
-        //dao = AlwaysDataSQL_DAO.getInstance();
-        dao = new InMemory_DAO();
+        dao = AlwaysDataSQL_DAO.getInstance();
         TaxBrackets = dao.findAllBrackets();
     }
+
     public double getTax(double amount) {
+       double tax = 0;
+       String taxInfo;
+
+       for (TaxBracket bracket : TaxBrackets) {
+          if (amount > bracket.getMax()) {
+              tax += (bracket.getMax() - bracket.getMin()) * bracket.getRate();
+            } else {
+                tax += (amount- bracket.getMin()) * bracket.getRate();
+
+            }
+        }
+        return tax;
+    }
+   /* public double getTax(double amount) {
         double tax = 0;
 
         for (TaxBracket taxBracket : TaxBrackets) {
@@ -28,7 +39,7 @@ public class QuebecTaxController {
             }
         }
         return tax;
-    }
+    } */
 
 //     public double getTax(double amount) {
 //        double tax = 0;
