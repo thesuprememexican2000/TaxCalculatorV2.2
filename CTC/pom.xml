@@ -35,25 +35,25 @@
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-sync</artifactId>
-            <version>4.9.0</version>
+            <version>4.9.1</version>
         </dependency>
 
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-core</artifactId>
-            <version>4.8.2</version>
+            <version>4.9.1</version>
         </dependency>
 
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-legacy</artifactId>
-            <version>4.5.0-beta0</version>
+            <version>4.9.1</version>
         </dependency>
 
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>bson</artifactId>
-            <version>4.8.2</version>
+            <version>4.9.1</version>
         </dependency>
 
         <dependency>

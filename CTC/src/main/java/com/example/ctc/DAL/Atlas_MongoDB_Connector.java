@@ -6,6 +6,7 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
+
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
@@ -22,8 +23,7 @@ public class Atlas_MongoDB_Connector extends AbstractMongoDB_Connector implement
 
     @Override
     public void connect() {
-        String connectionString = "mongodb+srv://fornitejimmy23:<password>@cockster0.dg3xywk.mongodb.net/?retryWrites=true&w=majority";
-
+        String connectionString = "mongodb+srv://fornitejimmy23:bigcappy23@cockster0.dg3xywk.mongodb.net/?retryWrites=true&w=majority";
         MongoClientURI uri = new MongoClientURI(connectionString);
         MongoClient mongoClient = new MongoClient(uri);
 
