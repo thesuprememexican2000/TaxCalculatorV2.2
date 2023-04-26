@@ -18,6 +18,7 @@ public class GlobalTaxCalculator {
         totalTax += qtc.getTax(amount);
         totalTax += ctc.getTax(amount);
         //taxInfo = String.format("{\"QuebecRate\":%f,\"CanadaRate\":%f,\"Amount\":%.2f}",qcTax.get("rate"),caTax.get("rate"),totalTax);
-        return totalTax;
+        return Math.round(totalTax * 100.0)/100.0;
     }
+
 }

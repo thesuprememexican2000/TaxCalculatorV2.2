@@ -19,78 +19,15 @@ public class QuebecTaxController {
         dao = new InMemory_DAO();
         TaxBrackets = dao.findAllBrackets();
     }
+
     public double getTax(double amount) {
         double tax = 0;
 
         for (TaxBracket taxBracket : TaxBrackets) {
             if (taxBracket.getMin() <= amount && amount < taxBracket.getMax()) {
-                tax = amount * (taxBracket.getRate() / 100);
+                tax = amount * (taxBracket.getRate());
             }
         }
         return tax;
     }
-
-//     public double getTax(double amount) {
-//        double tax = 0;
-//        String taxInfo;
-//        JsonObject json = null;
-//
-//        for (TaxBracket bracket : TaxBrackets) {
-//            if (amount > bracket.getMax()) {
-//                tax += (bracket.getMax() - bracket.getMin()) * bracket.getRate();
-//                taxInfo = String.format("{\"amount\":%.2f,\"rate\":%f}", tax, bracket.getRate());
-//                json = new JsonParser().parse(taxInfo).getAsJsonObject();
-//            } else {
-//                tax += (amount- bracket.getMin()) * bracket.getRate();
-//                taxInfo = String.format("{\"amount\":%.2f,\"rate\":%f}", tax, bracket.getRate());
-//                json = new JsonParser().parse(taxInfo).getAsJsonObject();
-//                break;
-//            }
-//        }
-//        return tax;
-//    }
-
-//     JsonObject getTax(double amount) {
-//        String taxInfo;
-//        JsonObject jsonObject;
-//        double tax;
-//
-//        for (TaxBracket taxBracket : TaxBrackets) {
-//            if (taxBracket.getMin() <= amount && amount < taxBracket.getMax()) {
-//                tax = amount * (taxBracket.getRate()/100);
-//                taxInfo = String.format("{\"amount\":%.2f,\"rate\":%f}",tax,taxBracket.getRate());
-//                jsonObject = new JsonParser().parse(taxInfo).getAsJsonObject();
-//                return jsonObject;
-//            }
-//        }
-//         taxInfo = "{\"amount\":0,\"rate\":0}";
-//         jsonObject = new JsonParser().parse(taxInfo).getAsJsonObject();
-//         return jsonObject;
-//    }
 }
-
-
-//cringe version
-//    double getTax(double amount) {
-//        double total = 0;
-//        if (amount <= 46295 ){
-//            total = amount * .15;
-//        }
-//        //entre 49 020 et 98 040
-//        else if (amount > 46295 && amount <= 92580) {
-//            total = 46295 * .15;
-//            total = total + ((amount - 46295) * .205);
-//        }
-//        //entre 98 040 et 151 978
-//        else if (amount > 92580 && amount <= 112655) {
-//            total = 46295 * .15;
-//            total = total + (92580 * .205);
-//            total = total + ((amount - 92580) * .26);
-//        }
-//        //plus de 216 511
-//        else if (amount > 112655) {
-//            total = 46295 * .15;
-//            total = total + (92580 * .205);
-//            total = total + (112655 * .26);
-//            total = total + ((amount - 112655) * 32);
-//        }

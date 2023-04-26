@@ -15,17 +15,10 @@ public class    QuebecService {
 
     //Request: http://localhost:13001/qtc/api/tax?amount=1000
     @GetMapping("/tax")
-    public double calculateQuebecTax(@RequestParam Map<String,String> allParams) {
+    public double calculateQuebecTax(@RequestParam Map<String, String> allParams) {
 
         double amount = Double.valueOf(allParams.get("amount"));
         QuebecTaxController controller = new QuebecTaxController();
         return controller.getTax(amount);
-    }
-
-    //GET http://localhost:8089/client_service/api/
-    @GetMapping(path="/")
-    public String getLandingMessage()
-    {
-        return "Quebec Tax Calculator...";
     }
 }
