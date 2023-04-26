@@ -10,53 +10,63 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuebecTaxController {
-    InMemory_DAO inmemdao;
-    AlwaysDataSQL_DAO dao;
+    //AlwaysDataSQL_DAO dao;
+    InMemory_DAO dao;
     List<TaxBracket> TaxBrackets;
 
     public QuebecTaxController() {
-        inmemdao = new InMemory_DAO();
-        dao = AlwaysDataSQL_DAO.getInstance();
+        //dao = AlwaysDataSQL_DAO.getInstance();
+        dao = new InMemory_DAO();
         TaxBrackets = dao.findAllBrackets();
     }
-
-     public JsonObject getTax(double amount) {
+    public double getTax(double amount) {
         double tax = 0;
-        String taxInfo;
-        JsonObject json = null;
-
-        for (TaxBracket bracket : TaxBrackets) {
-            if (amount > bracket.getMax()) {
-                tax += (bracket.getMax() - bracket.getMin()) * bracket.getRate();
-                taxInfo = String.format("{\"amount\":%.2f,\"rate\":%f}", tax, bracket.getRate());
-                json = new JsonParser().parse(taxInfo).getAsJsonObject();
-            } else {
-                tax += (amount- bracket.getMin()) * bracket.getRate();
-                taxInfo = String.format("{\"amount\":%.2f,\"rate\":%f}", tax, bracket.getRate());
-                json = new JsonParser().parse(taxInfo).getAsJsonObject();
-                break;
-            }
-        }
-        return json;
-    }
-/*
-     JsonObject getTax(double amount) {
-        String taxInfo;
-        JsonObject jsonObject;
-        double tax;
 
         for (TaxBracket taxBracket : TaxBrackets) {
             if (taxBracket.getMin() <= amount && amount < taxBracket.getMax()) {
-                tax = amount * (taxBracket.getRate()/100);
-                taxInfo = String.format("{\"amount\":%.2f,\"rate\":%f}",tax,taxBracket.getRate());
-                jsonObject = new JsonParser().parse(taxInfo).getAsJsonObject();
-                return jsonObject;
+                tax = amount * (taxBracket.getRate() / 100);
             }
         }
-         taxInfo = "{\"amount\":0,\"rate\":0}";
-         jsonObject = new JsonParser().parse(taxInfo).getAsJsonObject();
-         return jsonObject;
-    } */
+        return tax;
+    }
+
+//     public double getTax(double amount) {
+//        double tax = 0;
+//        String taxInfo;
+//        JsonObject json = null;
+//
+//        for (TaxBracket bracket : TaxBrackets) {
+//            if (amount > bracket.getMax()) {
+//                tax += (bracket.getMax() - bracket.getMin()) * bracket.getRate();
+//                taxInfo = String.format("{\"amount\":%.2f,\"rate\":%f}", tax, bracket.getRate());
+//                json = new JsonParser().parse(taxInfo).getAsJsonObject();
+//            } else {
+//                tax += (amount- bracket.getMin()) * bracket.getRate();
+//                taxInfo = String.format("{\"amount\":%.2f,\"rate\":%f}", tax, bracket.getRate());
+//                json = new JsonParser().parse(taxInfo).getAsJsonObject();
+//                break;
+//            }
+//        }
+//        return tax;
+//    }
+
+//     JsonObject getTax(double amount) {
+//        String taxInfo;
+//        JsonObject jsonObject;
+//        double tax;
+//
+//        for (TaxBracket taxBracket : TaxBrackets) {
+//            if (taxBracket.getMin() <= amount && amount < taxBracket.getMax()) {
+//                tax = amount * (taxBracket.getRate()/100);
+//                taxInfo = String.format("{\"amount\":%.2f,\"rate\":%f}",tax,taxBracket.getRate());
+//                jsonObject = new JsonParser().parse(taxInfo).getAsJsonObject();
+//                return jsonObject;
+//            }
+//        }
+//         taxInfo = "{\"amount\":0,\"rate\":0}";
+//         jsonObject = new JsonParser().parse(taxInfo).getAsJsonObject();
+//         return jsonObject;
+//    }
 }
 
 
