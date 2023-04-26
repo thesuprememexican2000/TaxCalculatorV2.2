@@ -27,10 +27,11 @@ public class AppDriver_QTC {
 
     public static void main(String[] args) {
         double amount = 92580;
-        JsonObject tax = controller.getTax(amount);
-        String taxAmount = tax.toString();
-
-        Logger.Logger(taxAmount);
+        double tax = controller.getTax(amount);
+        System.out.println(tax);
+//        String taxAmount = tax.toString();
+//
+//        Logger.Logger(taxAmount);
 
     }
 

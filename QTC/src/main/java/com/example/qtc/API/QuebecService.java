@@ -1,29 +1,34 @@
 package com.example.qtc.API;
 
-import com.example.qtc.BLL.Model.TaxBracket;
 import com.example.qtc.BLL.Control.QuebecTaxController;
-import com.example.qtc.DAL.AlwaysDataSQL_DAO;
-
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.Map;
 
+
 @RestController
-@RequestMapping("/api/qtc")
-public class QuebecService {
+@RequestMapping("/qtc/api")
+public class    QuebecService {
 
-    @Autowired
-    private AlwaysDataSQL_DAO dao;
-    private static QuebecTaxController controller;
+    //Request: http://localhost:13001/qtc/api/tax?amount=1000
+    @GetMapping("/tax")
+    public double calculateQuebecTax(@RequestParam Map<String,String> allParams) {
 
-    @RequestMapping("/rate")
-    //Request: http://localhost:8083/api/qtc/tax
-    JsonObject getTax(@RequestParam double amount) {
+        double amount = Double.valueOf(allParams.get("amount"));
+        QuebecTaxController controller = new QuebecTaxController();
         return controller.getTax(amount);
+        //return amount;
+    }
+
+    //GET http://localhost:8089/client_service/api/
+    @GetMapping(path="/")
+    public String getLandingMessage()
+    {
+        return "Quebec Tax Calculator...";
     }
 }

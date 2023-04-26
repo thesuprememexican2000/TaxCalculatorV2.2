@@ -1,6 +1,7 @@
 package com.example.qtc.DAL;
 
-import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+//import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import com.mysql.cj.jdbc.MysqlDataSource;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -17,7 +18,7 @@ public class AlwaysDataSQL_Driver implements ISQLDriver{
 
     @Override
     public Connection connect() {
-        MysqlDataSource datasource = new com.mysql.jdbc.jdbc2.optional.MysqlDataSource();
+        MysqlDataSource datasource = new MysqlDataSource();
         datasource.setUser("306943");
         datasource.setPassword("bigcappy45");
         datasource.setServerName("mysql-wokemoralistgaming25.alwaysdata.net");
