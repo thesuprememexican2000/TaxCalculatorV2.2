@@ -22,9 +22,9 @@ class GlobalTaxCalculatorTest {
     @Test
     void getTax() {
         //arrange
-        double expected = 1000;
+        double expected = 300;
         //act
-        double result = gtc.getTax(70000);
+        double result = gtc.getTax(1000);
         //assert
         Assertions.assertEquals(expected, result, 1);
     }
