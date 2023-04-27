@@ -1,4 +1,4 @@
-package com.example.gtc.BLL.Control;
+package com.example.ctc.BLL.Control;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -7,12 +7,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GlobalTaxCalculatorTest {
 
-    GlobalTaxCalculator gtc;
+class CanadaTaxControllerTest {
+
+    CanadaTaxController ctc;
     @BeforeEach
     void setUp() {
-        gtc = new GlobalTaxCalculator();
+        ctc = new CanadaTaxController();
     }
 
     @AfterEach
@@ -22,14 +23,11 @@ class GlobalTaxCalculatorTest {
     @Test
     void getTax() {
         //arrange
-        double expected = 1000;
+        double expected = 44370;
         //act
-        double result = gtc.getTax(70000);
-        //assert
-        Assertions.assertEquals(expected, result, 1);
-    }
+        double result = ctc.getTax(153000);
 
-    @Test
-    void testGetTax() {
+        //assert
+        Assertions.assertEquals(expected, result,1);
     }
 }
